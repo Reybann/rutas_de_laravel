@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function() {
+    return view('welcome');
+})->middleware('auth');
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('pages', 'PageController'); //7 rutas
+
+
+Route::resource('pages', PageController::class);
+
+Route::resource('users', 'UserController')->middleware('auth');
